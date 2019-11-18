@@ -33,7 +33,7 @@ class MatchQueryBackend(BaseSearchQueryBackend):
                 field, value = __values
                 if field in view.search_fields:
                     # Initial kwargs for the match query
-                    field_kwargs = {field: {'query': value}}
+                    field_kwargs = {field: {'query': value, 'fuzziness': 'AUTO'}}
                     # In case if we deal with structure 2
                     if isinstance(view.search_fields, dict):
                         extra_field_kwargs = view.search_fields[field]
@@ -46,7 +46,7 @@ class MatchQueryBackend(BaseSearchQueryBackend):
             else:
                 for field in view.search_fields:
                     # Initial kwargs for the match query
-                    field_kwargs = {field: {'query': search_term}}
+                    field_kwargs = {field: {'query': search_term, 'fuzziness': 'AUTO'}}
 
                     # In case if we deal with structure 2
                     if isinstance(view.search_fields, dict):
